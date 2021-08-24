@@ -442,6 +442,12 @@ func (svc *service) configureSessionDependencies(cfgOpts *settings.Options) erro
 	}
 	store.SetLogger(svc.logger)
 
+	store.Modules.ModuleChangeHooks = []state.ChangeHook{
+		func(string) {
+			jrpc2.ServerFromContext(svc.sessCtx).Notify(svc.sessCtx, "workspace/semanticTokens/refresh", nil)
+		},
+	}
+
 	err = schemas.PreloadSchemasToStore(store.ProviderSchemas)
 	if err != nil {
 		return err

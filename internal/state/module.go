@@ -371,6 +371,12 @@ func (s *ModuleStore) UpdateModManifest(path string, manifest *datadir.ModuleMan
 		return err
 	}
 
+	txn.Defer(func() {
+		for _, hook := range s.ModuleChangeHooks {
+			hook(path)
+		}
+	})
+
 	txn.Commit()
 	return nil
 }
@@ -460,6 +466,12 @@ func (s *ModuleStore) UpdateTerraformVersion(modPath string, tfVer *version.Vers
 	if err != nil {
 		return err
 	}
+
+	txn.Defer(func() {
+		for _, hook := range s.ModuleChangeHooks {
+			hook(modPath)
+		}
+	})
 
 	txn.Commit()
 	return nil

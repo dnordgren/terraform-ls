@@ -12,7 +12,7 @@ require (
 	github.com/hashicorp/go-memdb v1.3.2
 	github.com/hashicorp/go-multierror v1.1.1
 	github.com/hashicorp/go-version v1.3.0
-	github.com/hashicorp/hcl-lang v0.0.0-20210823185445-8fcbc27a6a22
+	github.com/hashicorp/hcl-lang v0.0.0-20210922075718-7befa3296a06
 	github.com/hashicorp/hcl/v2 v2.10.1
 	github.com/hashicorp/terraform-exec v0.14.0
 	github.com/hashicorp/terraform-json v0.12.0
@@ -34,3 +34,5 @@ require (
 	github.com/zclconf/go-cty-debug v0.0.0-20191215020915-b22d67c1ba0b
 	golang.org/x/tools v0.0.0-20200323144430-8dcfad9e016e
 )
+
+replace github.com/hashicorp/hcl-lang => ../hcl-lang
